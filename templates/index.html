@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Virginia Garden Planner{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Weather Forecast Section -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">3-Day Weather Forecast</h5>
+            </div>
+            <div class="card-body">
+                {% if weather and not weather.error %}
+                    <div class="row">
+                        {% for day in weather %}
+                            <div class="col-md-4">
+                                <div class="text-center mb-3">
+                                    <h6>{{ day.date }}</h6>
+                                    <div class="display-6 mb-2">{{ "%.1f"|format(day.temp) }}°F</div>
+                                    <p>{{ day.description|title }}</p>
+                                    <small>Humidity: {{ day.humidity }}%</small>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">Weather data unavailable</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Tasks Section -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5 class="card-title mb-0">Today's Garden Tasks</h5>
+            </div>
+            <div class="card-body">
+                {% if tasks %}
+                    <ul class="list-group list-group-flush">
+                        {% for task in tasks %}
+                            <li class="list-group-item {% if 'Frost warning' in task %}text-danger{% endif %}">
+                                {{ task }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted">No tasks for today</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Links Section -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="card-title mb-0">Quick Links</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="/vegetables" class="btn btn-outline-primary btn-lg w-100 mb-3">
+                            Browse Vegetables
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#" class="btn btn-outline-success btn-lg w-100 mb-3" onclick="alert('Coming soon!')">
+                            Planting Calendar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

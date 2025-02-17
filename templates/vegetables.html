@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Vegetables - Virginia Garden Planner{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2>Virginia Zone 7A Vegetables</h2>
+        <p class="text-muted">Click on any vegetable to see detailed planting and harvesting information.</p>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+    {% if vegetables %}
+        {% for veg in vegetables %}
+            <div class="col">
+                <div class="card h-100">
+                    {% if veg['image_url'] %}
+                        <img src="{{ veg['image_url'] }}" class="card-img-top" alt="{{ veg['name'] }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <span class="text-muted">No image available</span>
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ veg['name'] }}</h5>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                Sow Type: {{ veg['sow_type'] }}<br>
+                                Days to Harvest: {{ veg['days_to_harvest'] }}
+                            </small>
+                        </p>
+                        <a href="{{ url_for('vegetable_detail', id=veg['id']) }}" class="btn btn-outline-primary stretched-link">View Details</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                No vegetables found in the database. Check back soon!
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

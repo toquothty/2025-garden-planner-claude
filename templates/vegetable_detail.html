@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}{{ vegetable['name'] }} - Virginia Garden Planner{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            {% if vegetable['image_url'] %}
+                <img src="{{ vegetable['image_url'] }}" class="card-img-top" alt="{{ vegetable['name'] }}" style="height: 300px; object-fit: cover;">
+            {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
+                    <span class="text-muted">No image available</span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <h2>{{ vegetable['name'] }}</h2>
+        
+        <!-- Basic Information -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">Growing Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Sow Type:</strong> {{ vegetable['sow_type'] }}</p>
+                        <p><strong>Days to Harvest:</strong> {{ vegetable['days_to_harvest'] }} days</p>
+                        <p><strong>Plant Spacing:</strong> {{ vegetable['plant_spacing'] }} inches</p>
+                    </div>
+                    <div class="col-md-6">
+                        {% if vegetable['seed_depth'] %}
+                            <p><strong>Seed Depth:</strong> {{ vegetable['seed_depth'] }} inches</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Planting Windows -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h5 class="card-title mb-0">Planting Windows</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Sowing Window:</h6>
+                        <p>
+                            Start: {{ vegetable['sow_start_date'] }}<br>
+                            End: {{ vegetable['sow_end_date'] }}
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Harvest Window:</h6>
+                        <p>
+                            Start: {{ vegetable['harvest_start_date'] }}<br>
+                            End: {{ vegetable['harvest_end_date'] }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Growing Tips -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="card-title mb-0">Growing Tips</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    {% if vegetable['sow_type'] == "Direct Sow" %}
+                        <li class="list-group-item">Plant seeds directly in the garden at {{ vegetable['seed_depth'] }} inches deep</li>
+                        <li class="list-group-item">Space plants {{ vegetable['plant_spacing'] }} inches apart</li>
+                        <li class="list-group-item">Expect harvest in approximately {{ vegetable['days_to_harvest'] }} days</li>
+                    {% else %}
+                        <li class="list-group-item">Start seeds indoors and transplant when weather permits</li>
+                        <li class="list-group-item">Space transplants {{ vegetable['plant_spacing'] }} inches apart</li>
+                        <li class="list-group-item">Expect harvest in approximately {{ vegetable['days_to_harvest'] }} days after transplanting</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col">
+        <a href="{{ url_for('vegetables') }}" class="btn btn-outline-secondary">
+            &larr; Back to Vegetables
+        </a>
+    </div>
+</div>
+{% endblock %}
