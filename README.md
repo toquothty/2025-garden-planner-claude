@@ -93,12 +93,12 @@ virginia-garden-planner/
 ### Homepage
 The homepage displays the current 3-day weather forecast for zip code 23832 and today's gardening tasks. Weather-based alerts, such as frost warnings, are automatically displayed when temperatures drop below 32°F.
 
-[Screenshot to be added: Homepage showing weather forecast and daily tasks]
+   ![Homepage](docs/homepage.png)
 
 ### Vegetables List
 The vegetables page shows a grid of all vegetables suitable for Virginia Zone 7A, with basic information about each vegetable including sow type and days to harvest.
 
-[Screenshot to be added: Grid view of vegetables with images and basic information]
+   ![Vegetable Page](docs/vegetables.png)
 
 ### Vegetable Detail
 Each vegetable has a detailed page showing comprehensive growing information, including:
@@ -108,31 +108,6 @@ Each vegetable has a detailed page showing comprehensive growing information, in
 - Sowing and harvest windows
 - Growing tips
 
-[Screenshot to be added: Detailed view of a vegetable with all growing information]
-
-### Adding Your Own Screenshots
-
-To add screenshots to this documentation:
-
-1. With the application running (`python app.py`), visit each page:
-   - Homepage: `http://localhost:5000/`
-   - Vegetables List: `http://localhost:5000/vegetables`
-   - Vegetable Detail: Click any vegetable card
-
-2. Take screenshots of each page (Windows: Win+Shift+S, Mac: Cmd+Shift+4)
-
-3. Save the screenshots in the `docs` directory:
-   ```
-   docs/
-   ├── homepage.png       # Weather and tasks view
-   ├── vegetables.png     # Grid of vegetables
-   └── vegetable-detail.png  # Individual vegetable information
-   ```
-
-4. Update this README by replacing the placeholder text with your screenshots:
-
-   ![Homepage](docs/homepage.png)
-   ![Vegetable Page](docs/vegetables.png)
    ![Sample Vegetable Page](docs/vegetable_example_page.png)
 
 
