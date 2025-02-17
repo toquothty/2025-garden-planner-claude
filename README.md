@@ -132,6 +132,8 @@ To add screenshots to this documentation:
 4. Update this README by replacing the placeholder text with your screenshots:
    ```markdown
    ![Homepage](docs/homepage.png)
+   ![Vegetable Page](docs/vegetables.png)
+   ![Sample Vegetable Page](docs/vegetable_example_page.png)
    ```
 
 ## Customization
